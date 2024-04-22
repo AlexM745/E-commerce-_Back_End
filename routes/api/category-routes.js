@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
       include:[{model: Product,  as: "product_catergory"}]
     });
     if (!categoryData){
-      res.status(404).json({message:"No category found with this id!"})
+      res.status(404).json({message:"No category found with this id!"});
     }
     res.status(200).json(categoryData);
   } catch (err) {
@@ -37,8 +37,23 @@ router.post('/', async (req, res) => {
   }
 });
 // update a category by its `id` value
-router.put('/:id', (req, res) => {
-  
+router.put('/:id', async (req, res) => {
+  try {
+    const categoryData = await Category.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(categoryData => {
+      if (!categoryData){
+      res.status(404).json({message:"No category found with this id!"});
+      return;
+    }
+    })
+    res.status(200).json(categoryData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 // delete a category by its `id` value
 router.delete('/:id', async (req, res) => {
