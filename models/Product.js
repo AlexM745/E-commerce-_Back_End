@@ -13,8 +13,8 @@ Product.init(
     // id column
     id:{
       type: DataTypes.INTEGER, 
-      allowNull: true, 
-      primaryKey: false, 
+      allowNull: false, 
+      primaryKey: true, 
       autoIncrement:true
     }, 
     // product name column
