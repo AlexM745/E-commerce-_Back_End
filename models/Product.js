@@ -22,6 +22,7 @@ Product.init(
       type: DataTypes.STRING,
       allowNull:false, 
     }, 
+    //price column
     price: {
       type: DataTypes.DECIMAL, 
       allowNull: false, 
@@ -31,6 +32,7 @@ Product.init(
       }
      
     }, 
+    //stock column
     stock: {
       type: DataTypes.INTEGER, 
       allowNull: false, 
