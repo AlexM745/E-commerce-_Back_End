@@ -10,6 +10,44 @@ class Product extends Model {}
 Product.init(
   {
     // define columns
+    // id column
+    id:{
+      type: DataTypes.INTEGER, 
+      allowNull: true, 
+      primaryKey: false, 
+      autoIncrement:true
+    }, 
+    // product name column
+    product_name: {
+      type: DataTypes.STRING,
+      allowNull:false, 
+    }, 
+    price: {
+      type: DataTypes.DECIMAL, 
+      allowNull: false, 
+      // checks that the data is a decimal
+      validate: {
+        isDecimal: true
+      }
+     
+    }, 
+    stock: {
+      type: DataTypes.INTEGER, 
+      allowNull: false, 
+      defaultValue: 10,
+      // validates that the data is numeric 
+      validate: {
+        isNumeric: true
+      }
+    },
+    // this a foregin key that is being added to connect both tables.
+    category_id: {
+      type: DataTypes.INTEGER,
+      references:{
+        model: 'category',
+        key: 'id'
+      } 
+    }
   },
   {
     sequelize,
