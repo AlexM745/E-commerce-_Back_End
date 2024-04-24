@@ -20,17 +20,17 @@ router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
   try {
-    const tagData = await Tag.findByPk(res.params.id,{
+    const tagData = await Tag.findByPk(res.params.id, {
       include: [{ model: Product }],
-      });
-      
-      if (!tagData){
-        res.status(404).json({message:"No category found with this id!"});
-      }
-      res.status(200).json(tagData);
-    } catch (err) {
-      res.status(500).json(err);
+    });
+
+    if (!tagData) {
+      res.status(404).json({ message: "No category found with this id!" });
     }
+    res.status(200).json(tagData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.post('/', async (req, res) => {
@@ -51,12 +51,10 @@ router.put('/:id', async (req, res) => {
         id: req.params.id
       }
     })
-      .then(tagData => {
-        if (!tagData) {
-          res.status(404).json({ message: "No category found with this id!" });
-          return;
-        }
-      })
+    if (!tagData[0]) {
+      res.status(404).json({ message: "No category found with this id!" });
+      return;
+    }
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
