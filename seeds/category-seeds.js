@@ -17,7 +17,7 @@ const categoryData = [
     category_name: 'Shoes',
   },
 ];
-
+// creates all categories into tables
 const seedCategories = () => Category.bulkCreate(categoryData);
 
 module.exports = seedCategories;

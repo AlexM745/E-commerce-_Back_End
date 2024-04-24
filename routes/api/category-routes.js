@@ -3,11 +3,11 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
-// finds all categories and added its asociated products
+// finds all categories and added its associated products
 router.get('/', async (req, res) => {
   try {
     const categoryData = await Category.findAll({
-      include: {model: Product, attributes:["product_name"]}
+      include: [{ model: Product }]
     });
     res.status(200).json(categoryData);
   } catch (err) {
@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      include: {model: Product,  attributes: ["category_id"]}
+      include: [{ model: Product }]
     });
-    if (!categoryData){
-      res.status(404).json({message:"No category found with this id!"});
+    if (!categoryData) {
+      res.status(404).json({ message: "No category found with this id!" });
     }
     res.status(200).json(categoryData);
   } catch (err) {
@@ -47,16 +47,14 @@ router.put('/:id', async (req, res) => {
         id: req.params.id
       }
     })
-    .then(categoryData => {
-      if (!categoryData){
-      res.status(404).json({message:"No category found with this id!"});
+    if (!categoryData[0]) {
+      res.status(404).json({ message: "No category found with this id!" });
       return;
-    }
     })
-    res.status(200).json(categoryData);
+res.status(200).json(categoryData);
   } catch (err) {
-    res.status(500).json(err);
-  }
+  res.status(500).json(err);
+}
 });
 // delete a category by its `id` value
 router.delete('/:id', async (req, res) => {
@@ -66,8 +64,8 @@ router.delete('/:id', async (req, res) => {
         id: req.params.id
       }
     });
-    if (!categoryData){
-      res.status(404).json({message:"No category found with this id!"})
+    if (!categoryData) {
+      res.status(404).json({ message: "No category found with this id!" })
     }
     res.status(200).json(categoryData);
   } catch (err) {
