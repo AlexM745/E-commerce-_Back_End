@@ -20,13 +20,12 @@
  ![Insomnia](https://img.shields.io/badge/Insomnia-black?style=for-the-badge&logo=insomnia&logoColor=5849BE)
  
   ## Demonstration
-  COMING SOON
-<!-- 
+
   The GIF below will show functionality and appearance.
 
-  ![Coming soon]() -->
+  ![Using postgres shell to make database then seeding the data base and showing the routes through insomia](./assets/e-commerce.gif)
 
-  <!-- The full video showing functionality can be found [here]() -->
+  The full video showing functionality can be found [here](https://youtu.be/0cK92ZaJNEI)
 
   ## Table of Contents
   - [User Story](#user-story)
